@@ -191,7 +191,7 @@ const Home = () => {
                     {
                         weather.forecast?.day.map((day,i)=>{
                             return(
-                                <TabPanelUnstyled value={i}>
+                                <TabPanelUnstyled key={i} value={i}>
                                     <div ref={pcDayCast} className="dc-placeholder" >
                                         
                                         <motion.div drag="x" 
@@ -216,7 +216,6 @@ const Home = () => {
                                                                 {/* <label htmlFor="">{hr.condition?.icon.split("/")[5]}</label>
                                                                 <label htmlFor="">{hr.condition?.icon.split("/")[6].split('.')[0]}</label> */}
                                                             </div>
-                                                            
                                                         </motion.div>
                                                     )
                                                 )

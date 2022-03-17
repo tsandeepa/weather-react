@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MainInfo = styled.div`
-    background: #ccc;
     flex-grow: 1;
     display: flex;
     justify-content: center;
