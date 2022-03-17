@@ -7,7 +7,13 @@ const GlobalStyles = createGlobalStyle`
  }
 
  h2{
-     color: red;
+ }
+
+ body{
+ }
+
+ img{
+     width: 50px;
  }
 
  .App{

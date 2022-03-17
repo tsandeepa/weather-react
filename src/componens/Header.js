@@ -1,11 +1,12 @@
 import { useState, useRef } from "react"
 import { SearchList } from "./styled/SearchList.Styled"
+import { HeaderTop } from "./styled/Header.Styled"
 
 const Header = ({setWeather, setArea}) => {
 
 
     const [searchRegion, setSearchRegion] = useState([])
-    const [visibility ,setVisibility] = useState(true)
+    const [visibility ,setVisibility] = useState(false)
     const [schList, setSchlist] = useState([])
     const schEl = useRef(null);
 
@@ -42,10 +43,9 @@ const Header = ({setWeather, setArea}) => {
 
 
     return ( 
-        <div>
-            <h4>THis is header</h4>
+        <HeaderTop>
 
-            <input type="text" ref={schEl} placeholder="search" onChange={(e)=> handleSearch(e.target.value)} />
+            <input type="text" ref={schEl} placeholder="Search Cities" onChange={(e)=> handleSearch(e.target.value)} />
                {
                     visibility &&
                     <SearchList>
@@ -53,16 +53,16 @@ const Header = ({setWeather, setArea}) => {
                                 schList && 
                                 schList.map((element,i)=>{
                                     return(
-                                        <div key={i} onClick={()=>handleSelect(element.name)}>
-                                            <label htmlFor="">{element.name}</label>
-                                            <label htmlFor="">{element.country}</label><br/>
+                                        <div className="sch-elem" key={i} onClick={()=>handleSelect(element.name)}>
+                                            <p>{element.name}</p>
+                                            <label htmlFor="">{element.country}</label>
                                         </div>
                                     )
                                 })
                             }
                     </SearchList>
                }
-        </div>
+        </HeaderTop>
      );
 }
  

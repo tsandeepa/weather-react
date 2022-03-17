@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { DayCast } from "./componens/styled/DayCast.Styled";
 import { Button } from "@mui/material";
 import Checkbox from '@mui/material/Checkbox';
@@ -14,6 +14,8 @@ import { MainInfo } from "./componens/styled/MainInfo.Styled";
 
 
 const Home = () => {
+
+    
 
     const [area, setArea ] = useState('Colombo')
     const [ifo_region, setIfoRegion] = useState(null)
@@ -33,6 +35,8 @@ const Home = () => {
 
     useEffect(()=>{
         fetchWeather()
+        // console.log(pcDayCast.current.scrollWidth);
+        
     },[area])
 
     const  fetchWeather  = async () =>{
@@ -44,6 +48,7 @@ const Home = () => {
             setDayFormmat(data.forecast.forecastday)
             setWeather({
                 condition: data.current.condition.text,
+                conditionIcon: data.current.condition.icon,
                 feelsLike: data.current.feelslike_c,
                 tempC: data.current.temp_c,
                 humitity:data.current.humidity,
@@ -60,7 +65,7 @@ const Home = () => {
                 },
             })  
             setIfoRegion(data.location.region)
-            
+            getDayWith()
         })
         .catch(err => console.error(err));
     }
@@ -81,7 +86,7 @@ const Home = () => {
 
 
     const variants = {
-        initial: { opacity: 0 , scale:0.2, y: 0, x:80},
+        initial: { opacity: 0 , scale:0.9, y: 0, x:80},
         visible: i => ({
             opacity:1, 
             scale:1,
@@ -105,35 +110,58 @@ const Home = () => {
     //     console.log(fm_date)
     //     setFmtDate(fm_date)
     // }
+    const pcDayCast = useRef(null)
+    const pcInnerDayCast = useRef(null)
+    const [dayScrollLimit, setDayScrollLimit] = useState(null)
 
+    const getDayWith = () =>{
+        // alert("document loaded")
+        console.log(pcDayCast.current?.scrollWidth, pcDayCast.current?.offsetWidth);
+        setDayScrollLimit(pcDayCast.current?.scrollWidth - pcDayCast.current?.offsetWidth)
+    }
+    
+    useEffect(()=>{
 
+    },[])
+    
 
     return ( 
-        <div className="container">
+        <div className="container" >
             <Header setWeather={setWeather}  setArea={setArea}/>
 
             <MainInfo>
-                {   weather &&
-                    <p>{area},{ifo_region}</p>
-                }
+                
                 <div>
+                    {   weather &&
+                        <h2 className="main-ifo-area"> <span> {area}</span> <span>{ifo_region}</span></h2>
+                    }
                     {
                         weather &&
                         <div>
-                            <h2>{weather.condition}</h2>
-                            <label>Temp : {weather.tempC}</label><br/>
-                            <label htmlFor="">Feels Like : {weather.feelsLike}</label><br/>
-                            <label htmlFor="">Humidity : {weather.humitity}</label><br/>
-                            <label htmlFor="">Wind Speed : {weather.windSpeed} km/h</label><br/>
-                            <label htmlFor="">MAX : {weather.forecast?.max}</label><br/>
-                            <label htmlFor="">MIN : {weather.forecast?.min}</label><br/>
+                            <h3>{weather.condition}</h3>
+                            {/* <img src={weather.conditionIcon} alt="" /> */}
+                            {/* <h5>{weather.conditionIcon?.slice(-7,-4)}</h5> */}
+                            {/* <h5>{weather.conditionIcon?.split("/")[5]}</h5> */}
+                            <div className="main-ifo">
+                                <img className="main-ico" src={`/images/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.svg`} alt="" />
+                                <h4 className="wiv_temp"> {weather.tempC}</h4>
+                            </div>
+                            
 
+                            <div className="w-info-values">
+                                <label htmlFor="">Feels Like <span> {weather.feelsLike}</span></label>
+                                <label htmlFor="">Humidity  <span> {weather.humitity}</span></label>
+                                <label htmlFor="">Wind Speed <span> {weather.windSpeed} km/h </span></label>
+                                <label htmlFor="">Max <span> {weather.forecast?.max}</span></label>
+                                <label htmlFor="">Min <span> {weather.forecast?.min}</span></label>
+                            </div>
                         </div>
                     }
 
                     
                     
                 </div>
+
             </MainInfo>
             {
                 weather && 
@@ -148,6 +176,13 @@ const Home = () => {
                                     <TabUnstyled key={i}> 
                                         { df_day + df_date }
                                         <p>{day.day?.avgtemp_c}</p>
+                                        <p>{day.day?.condition.text}</p>
+                                        {/* <img src={day.day?.condition.icon} alt="" /> */}
+                                        {/* <img src={`/images/icons/${day.day?.condition.icon.slice(-11,-4)}.svg`} alt="" /> */}
+                                        <img src={`/images/icons/${day.day?.condition.icon.split("/")[5]}/${day.day?.condition.icon.split("/")[6].split(".",1)}.svg`} alt="" />
+
+                                        {/* <label htmlFor="">{day.day?.condition.icon.split("/")[5]}</label> */}
+                                        {/* <label htmlFor="">{day.day?.condition.icon.split("/")[6].split(".",1)}</label> */}
                                     </TabUnstyled>
                                 )
                             })  
@@ -157,22 +192,38 @@ const Home = () => {
                         weather.forecast?.day.map((day,i)=>{
                             return(
                                 <TabPanelUnstyled value={i}>
-                                        <div style={{display:'flex', gap:'20px',}}>
+                                    <div ref={pcDayCast} className="dc-placeholder" >
+                                        
+                                        <motion.div drag="x" 
+                                        dragConstraints={{right:0, left: -dayScrollLimit}}
+                                        
+                                        className="dc-h-value"
+                                        ref={pcInnerDayCast}
+                                        >
                                             {
                                                 weather.forecast?.day[i].hour.map((hr,i)=>(
-                                                        <motion.div
+                                                        <motion.div 
                                                                 custom={i}
                                                                 initial="initial"
                                                                 animate="visible"
-                                                                whileHover="hover"
                                                                 variants={variants}
                                                         >
-                                                            <label htmlFor=""> {hr.temp_c} </label>    
+                                                            <div className="hr-box">
+                                                                <label htmlFor=""> {hr.temp_c} </label>  
+                                                                <p>{hr.condition?.text}</p> 
+                                                                {/* <img src={hr.condition?.icon} alt="" /> */}
+                                                                <img src={`/images/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split('.')[0]}.svg`} alt="" />
+                                                                {/* <label htmlFor="">{hr.condition?.icon.split("/")[5]}</label>
+                                                                <label htmlFor="">{hr.condition?.icon.split("/")[6].split('.')[0]}</label> */}
+                                                            </div>
+                                                            
                                                         </motion.div>
                                                     )
                                                 )
                                             }
-                                        </div>
+                                        </motion.div>
+                                    </div>
+
                                 </TabPanelUnstyled>
                             )
                         }) 
