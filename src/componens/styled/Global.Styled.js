@@ -13,7 +13,6 @@ const GlobalStyles = createGlobalStyle`
  }
 
  img{
-     width: 50px;
  }
 
  .App{

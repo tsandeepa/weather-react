@@ -149,11 +149,31 @@ const Home = () => {
                             
 
                             <div className="w-info-values">
-                                <label htmlFor="">Feels Like <span> {weather.feelsLike}</span></label>
-                                <label htmlFor="">Humidity  <span> {weather.humitity}</span></label>
-                                <label htmlFor="">Wind Speed <span> {weather.windSpeed} km/h </span></label>
-                                <label htmlFor="">Max <span> {weather.forecast?.max}</span></label>
-                                <label htmlFor="">Min <span> {weather.forecast?.min}</span></label>
+                                <label>
+                                    <img src="images/icons/WeatherIcon - 1-3.svg" alt="" />
+                                    Feels Like 
+                                    <span>{weather.feelsLike}</span>
+                                </label>
+                                <label>
+                                    <img src="images/icons/WeatherIcon - 1-18.svg" alt="" />
+                                    Humidity  
+                                    <span> {weather.humitity}</span>
+                                </label>
+                                <label>
+                                    <img src="images/icons/WeatherIcon - 1-6.svg" alt="" />
+                                    Wind Speed 
+                                    <span> {weather.windSpeed} km/h </span>
+                                </label>
+                                <label>
+                                    <img src="images/icons/up.png" alt="" />
+                                    Max 
+                                    <span> {weather.forecast?.max}</span>
+                                </label>
+                                <label>
+                                    <img src="images/icons/down.png" alt="" />
+                                    Min 
+                                    <span> {weather.forecast?.min}</span>
+                                </label>
                             </div>
                         </div>
                     }

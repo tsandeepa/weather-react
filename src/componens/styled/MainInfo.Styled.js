@@ -29,10 +29,17 @@ export const MainInfo = styled.div`
     .w-info-values{
         display: flex;
         gap: 30px;
+        img{
+            height: 22px;
+            margin-right: 5px;
+        }
         label{
             font-weight: 300;
+            font-size: 14px;
+
             span{
                 font-weight: 600;
+                margin-left: 10px;
             }
         }
     }

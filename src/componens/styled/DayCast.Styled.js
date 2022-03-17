@@ -12,6 +12,9 @@ export const DayCast = styled.div`
             width: 130px;
             background: transparent;
             cursor: pointer;
+            img{
+                width: 50px;
+            }
         }
         .Mui-selected{
             background: #fff;
