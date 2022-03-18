@@ -12,13 +12,19 @@ export const DayCast = styled.div`
             width: 130px;
             background: transparent;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 4px;
             img{
                 width: 50px;
             }
         }
         .Mui-selected{
-            background: #fff;
-            box-shadow: 0px 18px 15px #eee;
+            background: #ebeff3;
+            box-shadow: 0px 24px 15px #d4cfcf;
         }
     }
     
@@ -27,6 +33,29 @@ export const DayCast = styled.div`
         overflow: hidden;
         margin: 0 auto;
         display: flex ;
+        position: relative;
+        &::before{
+            content: " ";
+            width: 40px;
+            height: 100%;
+            background: #81a3c4bd;
+            display: block;
+            position: absolute;
+            left: -40px;
+            z-index: 1;
+            box-shadow: 11px 0px 11px #ebeff3;
+        }
+        &::after{
+            content: " ";
+            width: 40px;
+            height: 100%;
+            background: #2292ffbd;
+            display: block;
+            position: absolute;
+            right: -40px;
+            z-index: 1;
+            box-shadow: -21px -2px 11px #ebeff3;
+        }
     }
     .dc-h-value{
         display: flex;
@@ -34,22 +63,34 @@ export const DayCast = styled.div`
         gap: 20px;
         .hr-box{
             width: 92px;
-            min-height: 122px;
+            min-height: 126px;
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100%;
             justify-content: space-between;
+            cursor: grab;
         }
         label{
             font-size: 13px;
         }
+        label{
+            font-size: 13px;
+
+            &:last-child{
+                color: #93a1b8;
+            }
+        }
         p{
             font-size: 13px;
+            color: #93a1b8;
+
         }
         img{
             width: 30px;
+            pointer-events: none;
         }
+        
     }
 
     

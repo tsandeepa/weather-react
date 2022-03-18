@@ -14,6 +14,7 @@ export const SearchList = styled.div`
     gap: 15px;
     .sch-elem{
         text-align: right;
+        cursor: pointer;
         p{
             margin-bottom: 0;
             line-height: 1;

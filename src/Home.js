@@ -138,26 +138,26 @@ const Home = () => {
                     {
                         weather &&
                         <div>
-                            <h3>{weather.condition}</h3>
+                            <h3 className="area-condition">{weather.condition}</h3>
                             {/* <img src={weather.conditionIcon} alt="" /> */}
                             {/* <h5>{weather.conditionIcon?.slice(-7,-4)}</h5> */}
                             {/* <h5>{weather.conditionIcon?.split("/")[5]}</h5> */}
                             <div className="main-ifo">
-                                <img className="main-ico" src={`/images/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.svg`} alt="" />
-                                <h4 className="wiv_temp"> {weather.tempC}</h4>
+                                <img className="main-ico" src={`/images/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.png`} alt="" />
+                                <h4 className="wiv_temp"> {weather.tempC} <span>°</span></h4>
                             </div>
                             
 
                             <div className="w-info-values">
                                 <label>
-                                    <img src="images/icons/WeatherIcon - 1-3.svg" alt="" />
+                                    <img src="images/icons/WeatherIcon - 1-3.png" alt="" />
                                     Feels Like 
-                                    <span>{weather.feelsLike}</span>
+                                    <span>{`${weather.feelsLike} °`}</span>
                                 </label>
                                 <label>
                                     <img src="images/icons/WeatherIcon - 1-18.svg" alt="" />
                                     Humidity  
-                                    <span> {weather.humitity}</span>
+                                    <span> {`${weather.humitity}%`}</span>
                                 </label>
                                 <label>
                                     <img src="images/icons/WeatherIcon - 1-6.svg" alt="" />
@@ -167,12 +167,12 @@ const Home = () => {
                                 <label>
                                     <img src="images/icons/up.png" alt="" />
                                     Max 
-                                    <span> {weather.forecast?.max}</span>
+                                    <span> {`${weather.forecast?.max} °`}</span>
                                 </label>
                                 <label>
                                     <img src="images/icons/down.png" alt="" />
                                     Min 
-                                    <span> {weather.forecast?.min}</span>
+                                    <span> {`${weather.forecast?.min} °`}</span>
                                 </label>
                             </div>
                         </div>
@@ -195,11 +195,11 @@ const Home = () => {
                                 return(
                                     <TabUnstyled key={i}> 
                                         { df_day + df_date }
-                                        <p>{day.day?.avgtemp_c}</p>
+                                        <p style={{fontWeight:'600'}}>{day.day?.avgtemp_c} <span>°</span> </p>
                                         <p>{day.day?.condition.text}</p>
                                         {/* <img src={day.day?.condition.icon} alt="" /> */}
                                         {/* <img src={`/images/icons/${day.day?.condition.icon.slice(-11,-4)}.svg`} alt="" /> */}
-                                        <img src={`/images/icons/${day.day?.condition.icon.split("/")[5]}/${day.day?.condition.icon.split("/")[6].split(".",1)}.svg`} alt="" />
+                                        <img src={`/images/icons/${day.day?.condition.icon.split("/")[5]}/${day.day?.condition.icon.split("/")[6].split(".",1)}.png`} alt="" />
 
                                         {/* <label htmlFor="">{day.day?.condition.icon.split("/")[5]}</label> */}
                                         {/* <label htmlFor="">{day.day?.condition.icon.split("/")[6].split(".",1)}</label> */}
@@ -229,12 +229,13 @@ const Home = () => {
                                                                 variants={variants}
                                                         >
                                                             <div className="hr-box">
-                                                                <label htmlFor=""> {hr.temp_c} </label>  
+                                                                <label style={{fontWeight:'600'}}> {hr.temp_c} <span>°</span></label>  
                                                                 <p>{hr.condition?.text}</p> 
                                                                 {/* <img src={hr.condition?.icon} alt="" /> */}
-                                                                <img src={`/images/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split('.')[0]}.svg`} alt="" />
+                                                                <img src={`/images/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split('.')[0]}.png`} alt="" />
                                                                 {/* <label htmlFor="">{hr.condition?.icon.split("/")[5]}</label>
                                                                 <label htmlFor="">{hr.condition?.icon.split("/")[6].split('.')[0]}</label> */}
+                                                                <label htmlFor="">{hr.time?.slice(-5)+" H"}</label>
                                                             </div>
                                                         </motion.div>
                                                     )

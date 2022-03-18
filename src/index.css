@@ -3,11 +3,14 @@
 body {
   margin: 0;
   /* font-family: 'Montserrat', sans-serif; */
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+p,label{
+  font-family: 'Poppins', sans-serif !important;
+}
 code {
   font-family: 'Poppins', sans-serif;
 }

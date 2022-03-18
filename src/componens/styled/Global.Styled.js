@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
  }
 
  body{
+    background: #ebeff3;
  }
 
  img{
