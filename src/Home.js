@@ -141,7 +141,7 @@ const Home = () => {
                         weather &&
                         <div>
                             <h3 className="area-condition">{weather.condition}</h3>
-                            {/* <img src={weather.conditionIcon} alt="" /> */}
+                            <img src={weather.conditionIcon} alt="" />
                             {/* <h5>{weather.conditionIcon?.slice(-7,-4)}</h5> */}
                             {/* <h5>{weather.conditionIcon?.split("/")[5]}</h5> */}
                             <div className="main-ifo">
