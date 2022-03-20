@@ -9,4 +9,11 @@ export const HeaderTop = styled.div`
         border: 1px solid #ccc;
         border-radius: 50px;
     }
+
+    @media only screen and (max-width: 900px){
+        input{
+            width: 100%;
+        }
+    }
+
 `

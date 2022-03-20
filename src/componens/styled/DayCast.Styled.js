@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
 export const DayCast = styled.div`
+    .day-cast-bg{
+        position: fixed;
+        left: 0;
+        z-index: -1;
+        top: -22px;
+        transform: rotate(180deg);
+    }
     padding: 50px 0;
     .TabsListUnstyled-root{
         display:flex;
@@ -38,7 +45,7 @@ export const DayCast = styled.div`
             content: " ";
             width: 40px;
             height: 100%;
-            background: #81a3c4bd;
+            background: #ebeff3;
             display: block;
             position: absolute;
             left: -40px;
@@ -49,7 +56,7 @@ export const DayCast = styled.div`
             content: " ";
             width: 40px;
             height: 100%;
-            background: #2292ffbd;
+            background: #ebeff3;
             display: block;
             position: absolute;
             right: -40px;
@@ -91,6 +98,13 @@ export const DayCast = styled.div`
             pointer-events: none;
         }
         
+    }
+
+    @media only screen and (max-width: 900px){
+        .dc-placeholder{
+            max-width: 100%;
+        }
+
     }
 
     

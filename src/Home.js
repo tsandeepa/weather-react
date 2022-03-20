@@ -128,9 +128,11 @@ const Home = () => {
     return ( 
         <div className="container" >
             <Header setWeather={setWeather}  setArea={setArea}/>
-
+            
             <MainInfo>
-                
+                <div>
+                    
+                </div>
                 <div>
                     {   weather &&
                         <h2 className="main-ifo-area"> <span> {area}</span> <span>{ifo_region}</span></h2>
@@ -250,7 +252,7 @@ const Home = () => {
                     }
                     
                     </TabsUnstyled>
-
+                    <img className="day-cast-bg" src="images/Group 296.png" alt="" />    
                 </DayCast>
             }
             

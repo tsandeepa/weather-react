@@ -59,5 +59,18 @@ export const MainInfo = styled.div`
             }
         }
     }
+
+    @media only screen and (max-width: 900px){
+        .w-info-values{
+            flex-direction: column;
+        }
+        .wiv_temp{
+            font-size: 5em;
+        }
+        .main-ifo-area{
+            font-size: 1.5em;
+        }   
+    }
+
     
 `

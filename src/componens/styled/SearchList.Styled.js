@@ -25,5 +25,9 @@ export const SearchList = styled.div`
             font-size: 12px;
         }
     }
+    @media only screen and (max-width: 900px){
+        z-index:1;
+        
+    }
 
 `
