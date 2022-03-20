@@ -18,7 +18,7 @@ const Header = ({setWeather, setArea}) => {
         if(term.length >= 3){
             setVisibility(true)
             setSchlist([])
-            fetch(`http://api.weatherapi.com/v1/search.json?key=110585d5a744455191d171919220803&q=${searchRegion}`)
+            fetch(`https://api.weatherapi.com/v1/search.json?key=110585d5a744455191d171919220803&q=${searchRegion}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data)
