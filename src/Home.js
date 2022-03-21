@@ -41,7 +41,7 @@ const Home = () => {
     },[area])
 
     const  fetchWeather  = async () =>{
-        await fetch(`http://api.weatherapi.com/v1/forecast.json?key=110585d5a744455191d171919220803&q=${area}&days=3&aqi=no&alerts=no`)
+        await fetch(`https://api.weatherapi.com/v1/forecast.json?key=110585d5a744455191d171919220803&q=${area}&days=3&aqi=no&alerts=no`)
         .then (response =>   response.json())
         .then(data => {
             console.log(data);
