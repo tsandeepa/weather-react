@@ -8,7 +8,7 @@ export const HeaderTop = styled.div`
         padding: 8px 15px;
         border: 1px solid #ccc;
         border-radius: 50px;
-        font-size: 14x;
+        font-size: 14px;
     }
 
     @media only screen and (max-width: 900px){

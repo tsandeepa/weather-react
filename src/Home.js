@@ -131,13 +131,7 @@ const Home = () => {
             <Header setWeather={setWeather}  setArea={setArea}/>
             
             <MainInfo>
-                <div>
-                    {/* <h3>Test Images</h3> */}
-                    {/* <img src="images/ico.png" alt="" /> */}
-                    {/* <img src={require("../public/images/ico.png").default} alt='pic' /> */}
-                    {/* <img src={require('images/ico.png')} alt="" /> */}
-                    {/* <img src={require('./assets/ico.png')} alt="" /> */}
-                </div>
+                
                 <div>
                     {   weather &&
                         <h2 className="main-ifo-area"> <span> {area}</span> <span>{ifo_region}</span></h2>
@@ -146,30 +140,23 @@ const Home = () => {
                         weather && 
                         <div>
                             <h3 className="area-condition">{weather.condition}</h3>
-                            {/* <img src={`https:${weather.conditionIcon}`} alt="" /> */}
-                            {/* <img src={`${weather.conditionIcon}`} alt="" /> */}
-                            {/* <h5><a href={`https:${weather.conditionIcon}`}>https:{weather.conditionIcon}</a></h5> */}
-                            {/* <h5><a href={weather.conditionIcon}>{weather.conditionIcon}</a></h5> */}
-                            {/* <h5>{weather.conditionIcon?.slice(-7,-4)}</h5> */}
-                            {/* <h5>{weather.conditionIcon?.split("/")[5]}</h5> */}
-                            <div className="main-ifo">
-                                {/* <img className="main-ico" src={`/images/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.png`} alt="" /> */}
-                                {/* <img className="main-ico" src={require(`./assets/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.png`)} alt="" /> */}
-                                {/* <img className="main-ico" src={require(`./assets/icons/${weather?.current?.condition?.icon.split("/")[5]}/${weather?.current?.condition?.icon.slice(-7,-4)}.png`)} alt="" /> */}
-                                {/* {icoHttps && <img className="main-ico" src={`/images/icons/${icoHttps?.split("/")[5]}/${icoHttps?.slice(-7,-4)}.png`} alt="" />} */}
-                                {/* <img src={require('./assets/ico.png')} alt="" /> */}
-                                {/* <img src={require('./assets/ico.png')} alt="" /> */}
-                                
-                                {/* <img className="main-ico" src={`${weather.conditionIcon}`} alt="" /> */}
+                            
+                            <motion.div 
+                            initial={{ y:-80}}
+                            animate={{ y:0}} 
+                            className="main-ifo">
                                 
                                 {weather.current && <img className="main-ico" src={require(`./assets/icons/${weather.current?.condition.icon.split("/")[5]}/${weather.current?.condition.icon.slice(-7,-4)}.png`)} alt="" /> }
                                 
-                                <h4 className="wiv_temp"> {weather.tempC} <span>°</span></h4>
-                            </div>
+                                <motion.h4  className="wiv_temp"> {weather.tempC} <span>°</span></motion.h4>
+                            </motion.div>
                                 
 
 
-                            <div className="w-info-values">
+                            <motion.div 
+                                initial={{opacity:0, y:-80}} 
+                                animate={{opacity:1, y:0}}
+                                className="w-info-values">
                                 <label>
                                     <img src={require("./assets/icons/WeatherIcon - 1-3.png")} alt="" />
                                     Feels Like 
@@ -195,7 +182,7 @@ const Home = () => {
                                     Min 
                                     <span> {`${weather.forecast?.min} °`}</span>
                                 </label>
-                            </div>
+                            </motion.div>
                         </div>
                     }
 
@@ -218,13 +205,9 @@ const Home = () => {
                                         { df_day + df_date }
                                         <p style={{fontWeight:'600'}}>{day.day?.avgtemp_c} <span>°</span> </p>
                                         <p>{day.day?.condition.text}</p>
-                                        {/* <img src={day.day?.condition.icon} alt="" /> */}
-                                        {/* <img src={`/images/icons/${day.day?.condition.icon.slice(-11,-4)}.svg`} alt="" /> */}
-                                        {/* <img src={`/images/icons/${day.day?.condition.icon.split("/")[5]}/${day.day?.condition.icon.split("/")[6].split(".",1)}.png`} alt="" /> */}
+  
                                         <img src={require(`./assets/icons/${day.day?.condition.icon.split("/")[5]}/${day.day?.condition.icon.split("/")[6].split(".",1)}.png`)} alt="" />
 
-                                        <label htmlFor="">{day.day?.condition.icon.split("/")[5]}</label>
-                                        <label htmlFor="">{day.day?.condition.icon.split("/")[6].split(".",1)}</label>
                                     </TabUnstyled>
                                 )
                             })  
@@ -249,15 +232,14 @@ const Home = () => {
                                                                 initial="initial"
                                                                 animate="visible"
                                                                 variants={variants}
+                                                                key={i}
                                                         >
                                                             <div className="hr-box">
                                                                 <label style={{fontWeight:'600'}}> {hr.temp_c} <span>°</span></label>  
                                                                 <p>{hr.condition?.text}</p> 
-                                                                {/* <img src={hr.condition?.icon} alt="" /> */}
-                                                                {/* <img src={`/images/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split('.')[0]}.png`} alt="" /> */}
+                                                                
                                                                 <img src={require(`./assets/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split(".",1)}.png`)} alt="" />
-                                                                {/* <label htmlFor="">{hr.condition?.icon.split("/")[5]}</label>
-                                                                <label htmlFor="">{hr.condition?.icon.split("/")[6].split('.')[0]}</label> */}
+                                                                
                                                                 <label htmlFor="">{hr.time?.slice(-5)+" H"}</label>
                                                             </div>
                                                         </motion.div>

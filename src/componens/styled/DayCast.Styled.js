@@ -25,6 +25,7 @@ export const DayCast = styled.div`
             justify-content: space-between;
             padding: 10px;
             border-radius: 4px;
+            color: #171717 !important;
             img{
                 width: 50px;
             }
@@ -91,7 +92,9 @@ export const DayCast = styled.div`
         p{
             font-size: 13px;
             color: #93a1b8;
-
+            min-height: 40px;
+            display: flex;
+            align-items: center;
         }
         img{
             width: 30px;
@@ -104,7 +107,9 @@ export const DayCast = styled.div`
         .dc-placeholder{
             max-width: 100%;
         }
-
+        .day-cast-bg{
+            display: none;
+        }
     }
 
     
