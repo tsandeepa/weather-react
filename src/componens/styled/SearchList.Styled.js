@@ -7,14 +7,14 @@ export const SearchList = styled.div`
     border-radius: 4px;
     position: absolute;
     margin-top: 40px;
-    padding: 18px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 15px;
+    z-index: 2;
     .sch-elem{
         text-align: right;
         cursor: pointer;
+        padding: 13px 23px;
         p{
             margin-bottom: 0;
             line-height: 1;
@@ -26,8 +26,8 @@ export const SearchList = styled.div`
         }
     }
     @media only screen and (max-width: 900px){
-        z-index:1;
-        
+        z-index:2;
+        width: 100%;
     }
 
 `

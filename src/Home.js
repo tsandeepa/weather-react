@@ -44,10 +44,11 @@ const Home = () => {
         await fetch(`https://api.weatherapi.com/v1/forecast.json?key=110585d5a744455191d171919220803&q=${area}&days=3&aqi=no&alerts=no`)
         .then (response =>   response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             // setForecast(data.forecast)
             setDayFormmat(data.forecast.forecastday)
             setWeather({
+                current: data.current,
                 condition: data.current.condition.text,
                 conditionIcon: data.current.condition.icon,
                 feelsLike: data.current.feelslike_c,
@@ -118,13 +119,11 @@ const Home = () => {
 
     const getDayWith = () =>{
         // alert("document loaded")
-        console.log(pcDayCast.current?.scrollWidth, pcDayCast.current?.offsetWidth);
+        // console.log(pcDayCast.current?.scrollWidth, pcDayCast.current?.offsetWidth);
         setDayScrollLimit(pcDayCast.current?.scrollWidth - pcDayCast.current?.offsetWidth)
     }
     
-    useEffect(()=>{
-
-    },[])
+    
     
 
     return ( 
@@ -133,11 +132,11 @@ const Home = () => {
             
             <MainInfo>
                 <div>
-                    <h3>Test Images</h3>
+                    {/* <h3>Test Images</h3> */}
                     {/* <img src="images/ico.png" alt="" /> */}
                     {/* <img src={require("../public/images/ico.png").default} alt='pic' /> */}
                     {/* <img src={require('images/ico.png')} alt="" /> */}
-                    <img src={require('./assets/ico.png')} alt="" />
+                    {/* <img src={require('./assets/ico.png')} alt="" /> */}
                 </div>
                 <div>
                     {   weather &&
@@ -154,41 +153,45 @@ const Home = () => {
                             {/* <h5>{weather.conditionIcon?.slice(-7,-4)}</h5> */}
                             {/* <h5>{weather.conditionIcon?.split("/")[5]}</h5> */}
                             <div className="main-ifo">
-                                <img className="main-ico" src={`/images/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.png`} alt="" />
+                                {/* <img className="main-ico" src={`/images/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.png`} alt="" /> */}
                                 {/* <img className="main-ico" src={require(`./assets/icons/${weather.conditionIcon?.split("/")[5]}/${weather.conditionIcon?.slice(-7,-4)}.png`)} alt="" /> */}
-                                {icoHttps && <img className="main-ico" src={`/images/icons/${icoHttps?.split("/")[5]}/${icoHttps?.slice(-7,-4)}.png`} alt="" />}
-                                <img src={require('./assets/ico.png')} alt="" />
+                                {/* <img className="main-ico" src={require(`./assets/icons/${weather?.current?.condition?.icon.split("/")[5]}/${weather?.current?.condition?.icon.slice(-7,-4)}.png`)} alt="" /> */}
+                                {/* {icoHttps && <img className="main-ico" src={`/images/icons/${icoHttps?.split("/")[5]}/${icoHttps?.slice(-7,-4)}.png`} alt="" />} */}
+                                {/* <img src={require('./assets/ico.png')} alt="" /> */}
+                                {/* <img src={require('./assets/ico.png')} alt="" /> */}
                                 
-                                <img className="main-ico" src={`${weather.conditionIcon}`} alt="" />
+                                {/* <img className="main-ico" src={`${weather.conditionIcon}`} alt="" /> */}
                                 
+                                {weather.current && <img className="main-ico" src={require(`./assets/icons/${weather.current?.condition.icon.split("/")[5]}/${weather.current?.condition.icon.slice(-7,-4)}.png`)} alt="" /> }
                                 
                                 <h4 className="wiv_temp"> {weather.tempC} <span>°</span></h4>
                             </div>
-                            
+                                
+
 
                             <div className="w-info-values">
                                 <label>
-                                    <img src="images/icons/WeatherIcon - 1-3.png" alt="" />
+                                    <img src={require("./assets/icons/WeatherIcon - 1-3.png")} alt="" />
                                     Feels Like 
                                     <span>{`${weather.feelsLike} °`}</span>
                                 </label>
                                 <label>
-                                    <img src="images/icons/WeatherIcon - 1-18.svg" alt="" />
+                                    <img src={require("./assets/icons/WeatherIcon - 1-18.png")} alt="" />
                                     Humidity  
                                     <span> {`${weather.humitity}%`}</span>
                                 </label>
                                 <label>
-                                    <img src="images/icons/WeatherIcon - 1-6.svg" alt="" />
+                                    <img src={require("./assets/icons/WeatherIcon - 1-6.png")} alt="" />
                                     Wind Speed 
                                     <span> {weather.windSpeed} km/h </span>
                                 </label>
                                 <label>
-                                    <img src="images/icons/up.png" alt="" />
+                                    <img src={require("./assets/icons/up.png")} alt="" />
                                     Max 
                                     <span> {`${weather.forecast?.max} °`}</span>
                                 </label>
                                 <label>
-                                    <img src="images/icons/down.png" alt="" />
+                                    <img src={require("./assets/icons/down.png")} alt="" />
                                     Min 
                                     <span> {`${weather.forecast?.min} °`}</span>
                                 </label>
@@ -250,8 +253,9 @@ const Home = () => {
                                                             <div className="hr-box">
                                                                 <label style={{fontWeight:'600'}}> {hr.temp_c} <span>°</span></label>  
                                                                 <p>{hr.condition?.text}</p> 
-                                                                <img src={hr.condition?.icon} alt="" />
-                                                                <img src={`/images/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split('.')[0]}.png`} alt="" />
+                                                                {/* <img src={hr.condition?.icon} alt="" /> */}
+                                                                {/* <img src={`/images/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split('.')[0]}.png`} alt="" /> */}
+                                                                <img src={require(`./assets/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split(".",1)}.png`)} alt="" />
                                                                 {/* <label htmlFor="">{hr.condition?.icon.split("/")[5]}</label>
                                                                 <label htmlFor="">{hr.condition?.icon.split("/")[6].split('.')[0]}</label> */}
                                                                 <label htmlFor="">{hr.time?.slice(-5)+" H"}</label>
@@ -269,7 +273,7 @@ const Home = () => {
                     }
                     
                     </TabsUnstyled>
-                    <img className="day-cast-bg" src="images/Group 296.png" alt="" />    
+                    <img className="day-cast-bg" src={require("./assets/bg-top.png")} alt="" />    
                 </DayCast>
             }
             

@@ -11,7 +11,7 @@ export const MainInfo = styled.div`
         display: flex;
         gap: 20px;
         justify-content: center;
-        color: #8b8b8b;
+        color: #464646;
     }
     .area-condition{
         color: #454545;
@@ -63,6 +63,7 @@ export const MainInfo = styled.div`
     @media only screen and (max-width: 900px){
         .w-info-values{
             flex-direction: column;
+            gap: 20px;
         }
         .wiv_temp{
             font-size: 5em;
