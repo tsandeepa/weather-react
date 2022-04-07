@@ -44,7 +44,7 @@ const Home = () => {
         await fetch(`https://api.weatherapi.com/v1/forecast.json?key=110585d5a744455191d171919220803&q=${area}&days=3&aqi=no&alerts=no`)
         .then (response =>   response.json())
         .then(data => {
-            // console.log(data);
+            console.log(data);
             // setForecast(data.forecast)
             setDayFormmat(data.forecast.forecastday)
             setWeather({
@@ -206,7 +206,7 @@ const Home = () => {
                                         <p style={{fontWeight:'600'}}>{day.day?.avgtemp_c} <span>°</span> </p>
                                         <p>{day.day?.condition.text}</p>
   
-                                        <img src={require(`./assets/icons/${day.day?.condition.icon.split("/")[5]}/${day.day?.condition.icon.split("/")[6].split(".",1)}.png`)} alt="" />
+                                        <img src={require(`./assets/icons/${day.day?.condition.icon?.split("/")[5]}/${day.day?.condition.icon?.split("/")[6].split(".",1)}.png`)} alt="" />
 
                                     </TabUnstyled>
                                 )
@@ -238,7 +238,7 @@ const Home = () => {
                                                                 <label style={{fontWeight:'600'}}> {hr.temp_c} <span>°</span></label>  
                                                                 <p>{hr.condition?.text}</p> 
                                                                 
-                                                                <img src={require(`./assets/icons/${hr.condition?.icon.split("/")[5]}/${hr.condition?.icon.split("/")[6].split(".",1)}.png`)} alt="" />
+                                                                <img src={require(`./assets/icons/${hr.condition?.icon?.split("/")[5]}/${hr.condition?.icon?.split("/")[6].split(".",1)}.png`)} alt="" />
                                                                 
                                                                 <label htmlFor="">{hr.time?.slice(-5)+" H"}</label>
                                                             </div>
