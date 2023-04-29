@@ -15,9 +15,9 @@ import { MainInfo } from "./componens/styled/MainInfo.Styled";
 
 const Home = () => {
 
-    
 
-    const [area, setArea ] = useState('Colombo')
+
+    const [area, setArea] = useState('Colombo')
     const [ifo_region, setIfoRegion] = useState(null)
 
     const [weather, setWeather] = useState('asdas')
@@ -34,43 +34,43 @@ const Home = () => {
     const [ifo_humitity, setIfoHumidity] = useState(null)
     const [ifo_country, setIfoCountry] = useState(null)
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchWeather()
         // console.log(pcDayCast.current.scrollWidth);
-        
-    },[area])
 
-    const  fetchWeather  = async () =>{
+    }, [area])
+
+    const fetchWeather = async () => {
         await fetch(`https://api.weatherapi.com/v1/forecast.json?key=110585d5a744455191d171919220803&q=${area}&days=3&aqi=no&alerts=no`)
-        .then (response =>   response.json())
-        .then(data => {
-            console.log(data);
-            // setForecast(data.forecast)
-            setDayFormmat(data.forecast.forecastday)
-            setWeather({
-                current: data.current,
-                condition: data.current.condition.text,
-                conditionIcon: data.current.condition.icon,
-                feelsLike: data.current.feelslike_c,
-                tempC: data.current.temp_c,
-                humitity:data.current.humidity,
-                windSpeed:data.current.wind_kph,
-                location:{
-                    country: data.location.country,
-                    region: data.location.region,
-                },
-                forecast: {
-                    day: data.forecast.forecastday,
-                    max: data.forecast.forecastday[0].day.maxtemp_c,
-                    min: data.forecast.forecastday[0].day.mintemp_c,
-                    
-                },
-            })  
-            setIfoRegion(data.location.region)
-            getDayWith()
-            // setIcoHttps(`https:${weather?.conditionIcon}`)
-        })
-        .catch(err => console.error(err));
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // setForecast(data.forecast)
+                setDayFormmat(data.forecast.forecastday)
+                setWeather({
+                    current: data.current,
+                    condition: data.current.condition.text,
+                    conditionIcon: data.current.condition.icon,
+                    feelsLike: data.current.feelslike_c,
+                    tempC: data.current.temp_c,
+                    humitity: data.current.humidity,
+                    windSpeed: data.current.wind_kph,
+                    location: {
+                        country: data.location.country,
+                        region: data.location.region,
+                    },
+                    forecast: {
+                        day: data.forecast.forecastday,
+                        max: data.forecast.forecastday[0].day.maxtemp_c,
+                        min: data.forecast.forecastday[0].day.mintemp_c,
+
+                    },
+                })
+                setIfoRegion(data.location.region)
+                getDayWith()
+                // setIcoHttps(`https:${weather?.conditionIcon}`)
+            })
+            .catch(err => console.error(err));
     }
 
     for (let i = 0; i < dayFormat.length; i++) {
@@ -84,24 +84,24 @@ const Home = () => {
         // console.log(df_secs);
 
         // setDayText(date_tx.getDay)
-        
+
     }
 
 
     const variants = {
-        initial: { opacity: 0 , scale:0.9, y: 0, x:80},
+        initial: { opacity: 0, scale: 0.9, y: 0, x: 80 },
         visible: i => ({
-            opacity:1, 
-            scale:1,
-            y:0,
-            x:0,
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            x: 0,
             transition: {
                 delay: i * 0.03,
                 type: 'easeIn'
             }
         }),
-        hover:{ scale: 1.06},
-        tap:{scale: 0.9},
+        hover: { scale: 1.06 },
+        tap: { scale: 0.9 },
     }
 
     // const [fmtDate, setFmtDate] = useState(null)
@@ -117,150 +117,153 @@ const Home = () => {
     const pcInnerDayCast = useRef(null)
     const [dayScrollLimit, setDayScrollLimit] = useState(null)
 
-    const getDayWith = () =>{
+    const getDayWith = () => {
         // alert("document loaded")
         // console.log(pcDayCast.current?.scrollWidth, pcDayCast.current?.offsetWidth);
         setDayScrollLimit(pcDayCast.current?.scrollWidth - pcDayCast.current?.offsetWidth)
     }
-    
-    
-    
 
-    return ( 
+
+
+
+    return (
         <div className="container" >
-            <Header setWeather={setWeather}  setArea={setArea}/>
-            
+            <Header setWeather={setWeather} setArea={setArea} />
+
             <MainInfo>
-                
+
                 <div>
-                    {   weather &&
+                    {weather &&
                         <h2 className="main-ifo-area"> <span> {area}</span> <span>{ifo_region}</span></h2>
                     }
                     {
-                        weather && 
+                        weather &&
                         <div>
                             <h3 className="area-condition">{weather.condition}</h3>
-                            
-                            <motion.div 
-                            initial={{ y:-80}}
-                            animate={{ y:0}} 
-                            className="main-ifo">
-                                
-                                {weather.current && <img className="main-ico" src={require(`./assets/icons/${weather.current?.condition.icon.split("/")[5]}/${weather.current?.condition.icon.slice(-7,-4)}.png`)} alt="" /> }
-                                
-                                <motion.h4  className="wiv_temp"> {weather.tempC} <span>°</span></motion.h4>
+
+                            <motion.div
+                                initial={{ y: -80 }}
+                                animate={{ y: 0 }}
+                                className="main-ifo">
+
+                                {weather.current && <img className="main-ico" src={require(`./assets/icons/${weather.current?.condition.icon.split("/")[5]}/${weather.current?.condition.icon?.slice(-7, -4)}.png`)} alt="" />}
+
+                                <motion.h4 className="wiv_temp"> {weather.tempC} <span>°</span></motion.h4>
                             </motion.div>
-                                
 
 
-                            <motion.div 
-                                initial={{opacity:0, y:-80}} 
-                                animate={{opacity:1, y:0}}
+
+                            <motion.div
+                                initial={{ opacity: 0, y: -80 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 className="w-info-values">
                                 <label>
                                     <img src={require("./assets/icons/WeatherIcon - 1-3.png")} alt="" />
-                                    Feels Like 
+                                    Feels Like
                                     <span>{`${weather.feelsLike} °`}</span>
                                 </label>
                                 <label>
                                     <img src={require("./assets/icons/WeatherIcon - 1-18.png")} alt="" />
-                                    Humidity  
+                                    Humidity
                                     <span> {`${weather.humitity}%`}</span>
                                 </label>
                                 <label>
                                     <img src={require("./assets/icons/WeatherIcon - 1-6.png")} alt="" />
-                                    Wind Speed 
+                                    Wind Speed
                                     <span> {weather.windSpeed} km/h </span>
                                 </label>
                                 <label>
                                     <img src={require("./assets/icons/up.png")} alt="" />
-                                    Max 
+                                    Max
                                     <span> {`${weather.forecast?.max} °`}</span>
                                 </label>
                                 <label>
                                     <img src={require("./assets/icons/down.png")} alt="" />
-                                    Min 
+                                    Min
                                     <span> {`${weather.forecast?.min} °`}</span>
                                 </label>
                             </motion.div>
                         </div>
                     }
 
-                    
-                    
+
+
                 </div>
 
             </MainInfo>
             {
-                weather && 
+                weather &&
                 <DayCast>
                     <TabsUnstyled defaultValue={0}>
-                    <TabsListUnstyled>
-                        {
-                            weather.forecast?.day.map((day,i)=>{
-                                let df_day = new Date(dayFormat[i].date).toDateString().slice(0,4)
-                                let df_date = new Date(dayFormat[i].date).toDateString().slice(8,10)
-                                return(
-                                    <TabUnstyled key={i}> 
-                                        { df_day + df_date }
-                                        <p style={{fontWeight:'600'}}>{day.day?.avgtemp_c} <span>°</span> </p>
-                                        <p>{day.day?.condition.text}</p>
-  
-                                        <img src={require(`./assets/icons/${day.day?.condition.icon?.split("/")[5]}/${day.day?.condition.icon?.split("/")[6].split(".",1)}.png`)} alt="" />
+                        <TabsListUnstyled>
+                            {
+                                weather.forecast?.day.map((day, i) => {
+                                    let df_day = new Date(dayFormat[i].date).toDateString().slice(0, 4)
+                                    let df_date = new Date(dayFormat[i].date).toDateString().slice(8, 10)
+                                    return (
+                                        <TabUnstyled key={i}>
+                                            {df_day + df_date}
+                                            <p style={{ fontWeight: '600' }}>{day.day?.avgtemp_c} <span>°</span> </p>
+                                            <p>{day.day?.condition.text}</p>
 
-                                    </TabUnstyled>
-                                )
-                            })  
-                        }
-                    </TabsListUnstyled>
-                    {
-                        weather.forecast?.day.map((day,i)=>{
-                            return(
-                                <TabPanelUnstyled key={i} value={i}>
-                                    <div ref={pcDayCast} className="dc-placeholder" >
-                                        
-                                        <motion.div drag="x" 
-                                        dragConstraints={{right:0, left: -dayScrollLimit}}
-                                        
-                                        className="dc-h-value"
-                                        ref={pcInnerDayCast}
-                                        >
-                                            {
-                                                weather.forecast?.day[i].hour.map((hr,i)=>(
-                                                        <motion.div 
-                                                                custom={i}
-                                                                initial="initial"
-                                                                animate="visible"
-                                                                variants={variants}
-                                                                key={i}
+                                            <img src={require(`./assets/icons/${day.day?.condition.icon?.split("/")[5]}/${day.day?.condition.icon?.split("/")[6].split(".", 1)}.png`)} alt="" />
+
+                                        </TabUnstyled>
+                                    )
+                                })
+                            }
+                        </TabsListUnstyled>
+                        {
+                            weather.forecast?.day.map((day, i) => {
+                                return (
+                                    <TabPanelUnstyled key={i} value={i}>
+                                        <div ref={pcDayCast} className="dc-placeholder" >
+
+                                            <motion.div drag="x"
+                                                dragConstraints={{ right: 0, left: -dayScrollLimit }}
+
+                                                className="dc-h-value"
+                                                ref={pcInnerDayCast}
+                                            >
+                                                {
+                                                    weather.forecast?.day[i].hour.map((hr, i) => (
+                                                        <motion.div
+                                                            custom={i}
+                                                            initial="initial"
+                                                            animate="visible"
+                                                            variants={variants}
+                                                            key={i}
                                                         >
                                                             <div className="hr-box">
-                                                                <label style={{fontWeight:'600'}}> {hr.temp_c} <span>°</span></label>  
-                                                                <p>{hr.condition?.text}</p> 
-                                                                
-                                                                <img src={require(`./assets/icons/${hr.condition?.icon?.split("/")[5]}/${hr.condition?.icon?.split("/")[6].split(".",1)}.png`)} alt="" />
-                                                                
-                                                                <label htmlFor="">{hr.time?.slice(-5)+" H"}</label>
+                                                                <label style={{ fontWeight: '600' }}> {hr.temp_c} <span>°</span></label>
+                                                                <p>{hr.condition?.text}</p>
+
+                                                                {hr.condition?.icon &&
+                                                                    <img src={require(`./assets/icons/${hr.condition.icon.split('/')[5]}/${hr.condition.icon.split('/')[6].split('.')[0]}.png`)} alt="" />
+                                                                }
+
+
+                                                                <label htmlFor="">{hr.time?.slice(-5) + " H"}</label>
                                                             </div>
                                                         </motion.div>
                                                     )
-                                                )
-                                            }
-                                        </motion.div>
-                                    </div>
+                                                    )
+                                                }
+                                            </motion.div>
+                                        </div>
 
-                                </TabPanelUnstyled>
-                            )
-                        }) 
-                    }
-                    
+                                    </TabPanelUnstyled>
+                                )
+                            })
+                        }
+
                     </TabsUnstyled>
-                    <img className="day-cast-bg" src={require("./assets/bg-top.png")} alt="" />    
+                    <img className="day-cast-bg" src={require("./assets/bg-top.png")} alt="" />
                 </DayCast>
             }
-            
+
         </div>
-     );
+    );
 }
- 
+
 export default Home;
